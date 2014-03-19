@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+   <class name="com.paypal.CampaignMetricEventCounts" table="CampaignMetricEventCounts">
+      <meta attribute="class-description">
+         This class contains campaign metric event count details. 
+      </meta>
+      <id name="id" type="int" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="CampaignID" column="CampaignID" type="string"/>
+      <property name="OfferID" column="OfferID" type="string"/>
+      <property name="OfferVID" column="OfferVID" type="string"/>
+      <property name="timestamp" column="timestamp" type="date"/>
+      <property name="IM_COUNT" column="IM_COUNT" type="int"/>
+      <property name="CL_COUNT" column="CL_COUNT" type="int"/>
+      <property name="CV_COUNT" column="CV_COUNT" type="int"/>
+   </class>
+   
+   <sql-query name="findEventCount">	
+      <return alias="CampaignMetricEventCounts" class="com.paypal.CampaignMetricEventCounts" />
+   		<![CDATA[select * from CampaignMetricEventCounts where CL_COUNT > ?]]>	
+   </sql-query>
+   
+   
+   
+</hibernate-mapping>
