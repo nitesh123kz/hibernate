@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.paypal.CampaignMetricEventCounts" table="CampaignMetricEventCounts">
+		<meta attribute="class-description">
+			This class contains campaign metric event count
+			details.
+		</meta>
+
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+
+		<property name="CampaignID" column="CampaignID" type="string" />
+		<property name="OfferID" column="OfferID" type="string" />
+		<property name="OfferVID" column="OfferVID" type="string" />
+		<property name="timestamp" column="timestamp" type="timestamp" />
+		<property name="IM_COUNT" column="IM_COUNT" type="int" />
+		<property name="CL_COUNT" column="CL_COUNT" type="int" />
+		<property name="CV_COUNT" column="CV_COUNT" type="int" />
+	</class>
+	<class name="com.paypal.CampaignMetricGenericCounts" table="CampaignMetricGenericCounts">
+		<meta attribute="class-description">
+			This class contains campaign metric generic count
+			details.
+		</meta>
+		<id name="id" type="int" column="id">
+			<generator class="native" />
+		</id>
+		<property name="CampaignID" column="CampaignID" type="string" />
+		<property name="OfferID" column="OfferID" type="string" />
+		<property name="OfferVID" column="OfferVID" type="string" />
+		<property name="timestamp" column="timestamp" type="timestamp" />
+		<property name="Browser" column="Browser" type="string" />
+		<property name="Device" column="Device" type="string" />
+		<property name="OS" column="OS" type="string" />
+		<property name="Location" column="Location" type="string" />
+		<property name="Count" column="Count" type="int" />
+	</class>
+	<sql-query name="findEventCount">
+		<return alias="CampaignMetricEventCounts" class="com.paypal.CampaignMetricEventCounts" />
+   		<![CDATA[select * from CampaignMetricEventCounts where CampaignID = ? and OfferID = ? and OfferVID = ?]]>
+	</sql-query>
+	<sql-query name="findGenericCount">
+		<return alias="CampaignMetricGenericCounts" class="com.paypal.CampaignMetricGenericCounts" />
+		<![CDATA[select * from CampaignMetricGenericCounts where CampaignID = ? and OfferID = ? and OfferVID = ?]]>
+	</sql-query>
+	<sql-query name="findCampaign">
+		<return alias="CampaignMetricEventCounts" class="com.paypal.CampaignMetricEventCounts" />
+   		<![CDATA[select * from CampaignMetricEventCounts where CampaignID = ?]]>
+	</sql-query>
+	<sql-query name="genericDetails">
+		<return alias="CampaignMetricGenericCounts" class="com.paypal.CampaignMetricGenericCounts" />
+		<![CDATA[select * from CampaignMetricGenericCounts where CampaignID = ?]]>
+	</sql-query>
+	<sql-query name="findAll">
+		<return alias="CampaignMetricEventCounts" class="com.paypal.CampaignMetricEventCounts" />
+   		<![CDATA[select * from CampaignMetricEventCounts]]>
+	</sql-query>
+</hibernate-mapping>
